@@ -1,4 +1,4 @@
-const Task = require('../models/tasks')
+const thisisfucked = require('../models/task')
 
 const getAllTasks = (req,res)=> {
     res.send("all itemsss")
@@ -23,4 +23,4 @@ const deleteTask = (req,res)=> {
 
 module.exports = {
     getAllTasks, createTask, getTask, updateTask, deleteTask
-}
+} 
