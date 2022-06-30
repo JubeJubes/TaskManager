@@ -7,19 +7,23 @@ const app = express()
 const tasks = require('./routes/tasks')
 const connecDB = require('./db/connect')
 const connectDB = require('./db/connect')
+const notFound = require('./middleware/notFound')
+const errorHandler = require('./middleware/errorHandler')
 
 //middleware
+app.use(express.static('./public'))
 app.use(express.json())
 
+
 //routes
-app.get('/hello',(req,res)=> {
-    res.send("Task Manager App")
-})
+
 
 app.use('/api/v1/tasks',tasks)
+app.use(notFound)
+app.use(errorHandler)
 
 
-const port = 3000
+const port = process.env.PORT || 3000
 const start = async()=>{
     try {
         await connectDB(process.env.DB_URL)
